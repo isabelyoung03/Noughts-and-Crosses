@@ -133,7 +133,7 @@ def completeLine(line: list) -> bool: #works out if a line can be completed to w
     return checkForLine(line, computersPiece, humansPiece)
 
 def blockLine(line: list) -> bool: #works out if the oppsoing player is about to complete a line
-    return checkForLine(line, humansPiece, humansPiece)
+    return checkForLine(line, humansPiece, computersPiece)
 
 def makeAPair(line: list) -> bool: 
     count = 0
@@ -147,7 +147,6 @@ def makeAPair(line: list) -> bool:
 def findPossibleMoves() -> list:
     possibleMoves = []
     for line in possibleLines:
-        count = 0
         if completeLine(line):
             possibleMoves.append(3) #completing a line has highest priority
         elif blockLine(line):
@@ -167,7 +166,6 @@ def computerMove():
     for i in range(8):
         if possibleMoves[i] == highestPriority:
             line = possibleLines[i]
-            nextMove = 0
             for i in range(3):
                 if getSquareContents(line[i]) == " ":
                     setSquareContents(line[i], computersPiece)
